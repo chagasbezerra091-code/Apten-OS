@@ -1,0 +1,39 @@
+# Apten OS Theme Configuration: Stillness
+# Chagas LLC, 2025-2026
+#
+# Filosofia: Design minimalista, de baixo contraste e focado na redução da fadiga visual.
+
+theme:
+  id: apten_stillness
+  name: "Apten Stillness Theme"
+  version: "2025.1.0"
+  description: |
+    A dark, low-contrast color scheme engineered for minimal visual distraction 
+    and optimal focus, embodying the Apten OS philosophy of calm and solitude.
+
+colors:
+  # Paleta base (Inspirada em cores frias e tons noturnos)
+  background:
+    primary: "#1A1B26" # Azul Escuro Profundo
+    secondary: "#24283B" # Cinza Azulado Escuro
+    panel: "#161821" # Fundo de Painel (Mais escuro)
+
+  text:
+    primary: "#C0CAF5" # Branco Suave
+    secondary: "#A9B1D6" # Cinza de Detalhe
+
+  accents:
+    focus: "#7AA2F7"    # Foco / Ação (Azul Calmo)
+    success: "#9DCDA8"  # Sucesso (Verde Menta)
+    warning: "#E0AF68"  # Aviso (Laranja Suave)
+    error: "#F7768E"    # Erro (Rosa Suave)
+    selection: "#3E445F" # Fundo de Seleção
+
+ui_settings:
+  typography:
+    family: "Roboto, Noto Sans, monospace"
+    weight_default: 400
+    weight_heavy: 600
+  metrics:
+    border_radius: "4px"
+    spacing_unit_px: 8
