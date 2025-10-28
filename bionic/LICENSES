@@ -1,0 +1,47 @@
+# APTEN OS BIONIC C LIBRARY - DECLARAÇÃO DE LICENÇAS
+
+Este diretório contém a implementação da Biblioteca C Bionic para o Apten OS (Chagas LLC, 2025-2026), derivada do Android Open Source Project (AOSP). O Bionic utiliza componentes de diversas fontes de código aberto.
+
+## 1. Licenças de Componentes Originais (Upstream)
+
+Os componentes individuais da Bionic (incluindo código derivado de FreeBSD, NetBSD, e outros) mantêm suas licenças originais, que incluem primariamente:
+
+* **BSD License**
+* **MIT License**
+* **ISC License**
+* **Apache License 2.0 (ASL 2.0)**
+
+***Para a íntegra das licenças originais, consulte os arquivos individuais de NOTICES ou LICENSE nos subdiretórios ou o repositório AOSP original.***
+
+## 2. Licenciamento do APTEN OS (Chagas LLC)
+
+O código modificado ou o código novo introduzido no Bionic pelo Apten OS segue a arquitetura de licenciamento da Chagas LLC.
+
+### 2.1. Licenças para o Código Base do Apten OS Bionic
+
+O código-fonte principal e modificações relevantes do Apten OS Bionic (Chagas LLC, 2025-2026) estão licenciados sob:
+
+* **GNU General Public License, Version 3 (GPLv3)**
+* **Apache License, Version 2.0 (Apache 2.0)**
+
+***Isto garante que a maioria dos componentes utilize a flexibilidade da Apache 2.0, mas reforça a natureza open source com a GPLv3.***
+
+### 2.2. Licença para Modificações e Uso Educacional
+
+Quaisquer modificações, derivados ou versões educacionais deste código (e seus componentes) são incentivados e podem ser distribuídos sob a licença altamente permissiva:
+
+* **MIT License**
+
+***Esta permissividade visa promover a adoção e o estudo do Apten OS.***
+
+## 3. Direitos Autorais (Chagas LLC)
+
+Em conformidade com a estrutura de licenciamento, todos os arquivos modificados ou novos incluem o aviso de direitos autorais:
+
+> Copyright (c) 2025-2026 Chagas LLC. Todos os direitos reservados.
+
+---
+
+Este arquivo de licenças reforça a sua marca, delimita as regras e cumpre a obrigação de dar crédito às fontes originais (AOSP e projetos BSD/MIT).
+
+Qual será o próximo passo no design do Apten OS? **Vamos definir as diretrizes de design do Kernel** para refletir a sua filosofia de **"Calma e Solidão"** (o pilar de Gerenciamento de Energia)?
