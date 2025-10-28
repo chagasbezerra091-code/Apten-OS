@@ -1,0 +1,32 @@
+{
+  "theme_id": "apten_stillness",
+  "name": "Apten Stillness Theme (Chagas LLC)",
+  "version": "2025.1.0",
+  "description": "A dark, low-contrast color scheme engineered for minimal visual distraction and optimal focus, embodying the Apten OS philosophy of calm and solitude.",
+  "colors": {
+    // Cores Primárias (Frias e Neutras)
+    "background_primary": "#1A1B26", // Azul Escuro Profundo (Calmo)
+    "background_secondary": "#24283B", // Cinza Azulado Escuro
+    "text_primary": "#C0CAF5", // Branco Suave (Baixo Contraste)
+    "text_secondary": "#A9B1D6", // Cinza Claro (Para detalhes)
+
+    // Cores de Ação (Para botões e destaque, mas suaves)
+    "accent_focus": "#7AA2F7", // Azul Suave (Clássico 2017)
+    "accent_success": "#9DCDA8", // Verde Menta Suave
+    "accent_warning": "#E0AF68", // Laranja Quente Suave
+    "accent_error": "#F7768E", // Rosa/Vermelho Suave
+
+    // Cores de Fundo (Elementos da Interface)
+    "panel_background": "#161821", // Um tom mais escuro que o primário
+    "selection_background": "#3E445F" // Seleção sutil
+  },
+  "typography": {
+    "font_family": "Roboto, Noto Sans, sans-serif",
+    "font_weight_default": 400,
+    "font_weight_heavy": 600
+  },
+  "metrics": {
+    "border_radius": "4px",
+    "spacing_unit": "8px"
+  }
+}
