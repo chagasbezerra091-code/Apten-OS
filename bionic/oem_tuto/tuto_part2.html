@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AptenOS OEM Tutorial – Parte 2: Compilação e Build</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos básicos reintroduzidos para visualização imediata */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f7f9; color: #333; }
+        .container { max-width: 1000px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        h1 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; margin-top: 0; }
+        h2 { color: #333; border-left: 5px solid #00aaff; padding-left: 10px; margin-top: 30px; }
+        h3 { color: #555; margin-top: 20px; }
+        code { background-color: #eee; padding: 2px 4px; border-radius: 3px; font-family: 'Consolas', 'Monaco', monospace; }
+        pre { background-color: #272822; color: #f8f8f2; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 0.9em; }
+        .alert-info { background-color: #d1ecf1; border-left: 5px solid #bee5eb; padding: 15px; margin: 20px 0; border-radius: 4px; color: #0c5460; }
+        .alert-success { background-color: #d4edda; border-left: 5px solid #c3e6cb; padding: 15px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        ol, ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚙️ AptenOS OEM Tutorial – Parte 2: Compilação do Sistema</h1>
+
+        <p>A Parte 1 estabeleceu seu ambiente de desenvolvimento e sincronizou o código-fonte. Esta parte irá cobrir o processo de compilação, que transforma o código-fonte em uma imagem de sistema pronta para ser instalada em seu hardware.</p>
+
+        <hr>
+
+        <h2>I. 🌳 Preparando o Ambiente e Variáveis</h2>
+
+        <p>Antes de começar a compilação, você deve navegar para o diretório raiz do código-fonte e carregar as variáveis de ambiente necessárias:</p>
+
+        <ol>
+            <li>Navegue para o diretório de trabalho criado na Parte 1:
+            <pre><code>cd ~/aptenos_oem_workspace
+</code></pre></li>
+            <li>Execute o script de configuração de ambiente (Este script inicializa caminhos, variáveis e o ambiente Python/Java):
+            <pre><code>source build/envsetup.sh
+</code></pre>
+            <div class="alert-info">
+                <strong>Importante:</strong> Você deve executar este comando (<code>source build/envsetup.sh</code>) **toda vez** que iniciar uma nova sessão de terminal que será usada para compilar o AptenOS.
+            </div>
+            </li>
+        </ol>
+
+        <hr>
+
+        <h2>II. 🎯 Seleção do Alvo de Build (Target)</h2>
+
+        <p>O AptenOS suporta diferentes arquiteturas e configurações de dispositivo. Você deve selecionar o "target" (alvo) que corresponde ao seu hardware OEM específico. O comando <code>lunch</code> é usado para este propósito.</p>
+
+        <h3>A. Listando Opções de Alvo</h3>
+
+        <p>Para ver todos os alvos disponíveis para compilação (seja para emulação ou hardware específico):</p>
+        <pre><code>lunch
+</code></pre>
+        <p>O terminal exibirá uma lista numerada de alvos disponíveis (ex: <code>aptenos_x86-userdebug</code>, <code>full_aptenos_device_name-eng</code>, etc.).</p>
+
+        <h3>B. Escolhendo o Alvo OEM</h3>
+
+        <p>Selecione o alvo de build que corresponde ao seu dispositivo. Use o número ou o nome completo. Por exemplo, se o seu hardware é o <code>aptenos_board_123</code>:</p>
+        <pre><code>lunch aptenos_board_123-userdebug
+</code></pre>
+        <ul>
+            <li>**<code>-user</code>**: Destinado à produção final, com acesso root desabilitado.</li>
+            <li>**<code>-userdebug</code>**: Recomendado para OEMs; possui acesso root e ferramentas de debug habilitadas.</li>
+            <li>**<code>-eng</code>**: Destinado a engenheiros de desenvolvimento, com configurações de depuração pesadas.</li>
+        </ul>
+
+        <hr>
+
+        <h2>III. 🛠️ Executando a Compilação</h2>
+
+        <p>Com o alvo selecionado, você está pronto para iniciar a compilação. O comando <code>make</code> (ou <code>m</code>) é usado.</p>
+
+        <ol>
+            <li>Inicie a compilação completa:
+            <pre><code>m -j$(nproc)
+</code></pre></li>
+            <li>**Entendendo o comando:**
+                <ul>
+                    <li><code>m</code>: Um atalho para o comando <code>make</code> que funciona no ambiente de build do AptenOS.</li>
+                    <li><code>-j$(nproc)</code>: Especifica o número de tarefas paralelas a serem usadas para a compilação, otimizando o tempo. <code>nproc</code> detecta automaticamente o número de núcleos de CPU disponíveis.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="alert-info">
+            <strong>Duração:</strong> A primeira compilação completa (full clean build) pode levar de **1 a 4 horas** ou mais, dependendo da velocidade do seu SSD e do número de núcleos de CPU. Compilações subsequentes (incrementais) serão muito mais rápidas.
+        </div>
+
+        <h3>A. Resultado de Sucesso</h3>
+
+        <p>Uma compilação bem-sucedida terminará com uma mensagem semelhante a esta:</p>
+        <pre class="alert-success"><code>#### build completed successfully (Xh Ym Zs) ####</code></pre>
+
+        <hr>
+
+        <h2>IV. 📦 Localizando os Artefatos de Saída</h2>
+
+        <p>Após a compilação, todos os arquivos de imagem gerados (imagens de boot, sistema, etc.) serão armazenados em um diretório específico:</p>
+
+        <pre><code>$OUT
+# ou, se a variável $OUT não estiver definida:
+~/aptenos_oem_workspace/out/target/product/&lt;DEVICE_NAME&gt;
+</code></pre>
+
+        <p>Os arquivos principais que você precisará para fazer o flash no seu dispositivo OEM incluem:</p>
+        <ul>
+            <li><code>boot.img</code> (Kernel e Ramdisk)</li>
+            <li><code>system.img</code> (Partição do Sistema Operacional)</li>
+            <li><code>userdata.img</code> (Partição de Dados do Usuário)</li>
+            <li><code>aptenos-image-&lt;DEVICE_NAME&gt;.zip</code> (Pacote completo para flashing/OTA)</li>
+        </ul>
+
+        <hr>
+
+        <h2>⏭️ Próximos Passos (Parte 3 do Tutorial)</h2>
+
+        <p>A Parte 3 irá abordar o processo de **Flashing (Gravação)** das imagens de sistema no hardware de teste e as primeiras etapas de personalização.</p>
+
+        <a href="tuto_part1.html">← Voltar à Parte 1: Configuração do Ambiente</a>
+
+    </div>
+</body>
+</html>
