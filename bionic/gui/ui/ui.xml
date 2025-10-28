@@ -1,0 +1,22 @@
+<package>package="com.apten.services.ui"</package>
+<app>
+<com.apten.services.ui>
+<inicial>
+<apps
+ files="bionic/apps"
+/>
+<sys_apps
+files="bionic/apps/system/"
+/>
+<ocult
+ocult_files="bionic/apps/system/ocult/"
+/>
+</com.apten.services.ui>
+
+
+
+
+
+  
+
+</app>
