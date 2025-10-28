@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AptenOS OEM Tutorial – Parte 1: Configuração do Ambiente</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f7f9; color: #333; }
+        .container { max-width: 1000px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        h1 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; margin-top: 0; }
+        h2 { color: #333; border-left: 5px solid #00aaff; padding-left: 10px; margin-top: 30px; }
+        h3 { color: #555; margin-top: 20px; }
+        code { background-color: #eee; padding: 2px 4px; border-radius: 3px; font-family: 'Consolas', 'Monaco', monospace; }
+        pre { background-color: #272822; color: #f8f8f2; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 0.9em; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        .note { background-color: #fff3cd; border-left: 5px solid #ffe0a3; padding: 15px; margin: 20px 0; border-radius: 4px; color: #856404; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 AptenOS OEM Tutorial – Parte 1: Introdução e Configuração do Ambiente</h1>
+
+        <p>Esta é a primeira parte do Guia de Fabricantes de Equipamento Original (OEM) do AptenOS. Ela irá guiá-lo através dos passos essenciais para configurar seu ambiente de trabalho e obter o código-fonte do AptenOS, permitindo que você comece a personalizar e construir sua primeira imagem de sistema.</p>
+
+        <hr>
+
+        <h2>I. 📋 Pré-requisitos do Sistema</h2>
+
+        <p>Para garantir uma compilação e desenvolvimento suaves, certifique-se de que seu ambiente atende aos seguintes requisitos mínimos e recomendados:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Requisito</th>
+                    <th>Detalhe Recomendado</th>
+                    <th>Nota Importante</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Sistema Operacional</strong></td>
+                    <td>Linux (Ubuntu 18.04 LTS ou mais recente é altamente recomendado)</td>
+                    <td>O suporte oficial e os scripts de build são otimizados para distribuições Linux.</td>
+                </tr>
+                <tr>
+                    <td><strong>Hardware</strong></td>
+                    <td>Processador Quad-Core (ou melhor), 16GB de RAM (mínimo)</td>
+                    <td>A compilação completa é intensiva em recursos e pode demorar horas em máquinas mais lentas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Armazenamento</strong></td>
+                    <td>500GB de espaço livre em disco (SSD **altamente** recomendado)</td>
+                    <td>O código-fonte e os artefatos de compilação podem consumir centenas de gigabytes.</td>
+                </tr>
+                <tr>
+                    <td><strong>Ferramentas</strong></td>
+                    <td>Git, Python 3.x, Java Development Kit (JDK) 11</td>
+                    <td>Certifique-se de que as ferramentas de build essenciais (`make`, `gcc`, etc.) estejam instaladas.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>II. 🛠️ Configuração do Ambiente de Build</h2>
+
+        <h3>A. Instalação de Pacotes Essenciais</h3>
+        <p>Abra um terminal e execute o seguinte comando para instalar as ferramentas necessárias para o processo de build do AptenOS:</p>
+        <pre><code>sudo apt update
+sudo apt install git-core gnupg flex bison build-essential zip curl zlib1g-dev \
+gcc-multilib g++-multilib libc6-dev-i386 libncurses5 lib32ncurses5-dev x11proto-core-dev \
+libx11-dev libgl1-mesa-dev libxml2-utils xsltproc rsync python3-pip openjdk-11-jdk
+</code></pre>
+
+        <h3>B. Configuração do Java Development Kit (JDK)</h3>
+        <p>O AptenOS requer o OpenJDK 11 para compilar seus componentes principais (já incluído no comando acima). Verifique a versão:</p>
+        <pre><code>java -version
+</code></pre>
+        <div class="note">
+            <strong>Nota Crítica:</strong> A versão correta do JDK é fundamental. Se você tiver várias versões instaladas, use o comando <code>sudo update-alternatives --config java</code> para garantir que o OpenJDK 11 esteja selecionado.
+        </div>
+
+        <hr>
+
+        <h2>III. 💻 Obtendo o Código-Fonte do AptenOS</h2>
+
+        <p>O AptenOS utiliza a ferramenta <code>repo</code> (baseada em Git) para gerenciar o grande número de repositórios que compõem o código-fonte completo.</p>
+
+        <h3>A. Instalação da Ferramenta <code>repo</code></h3>
+        <ol>
+            <li>Crie um diretório para binários locais e adicione-o ao seu <code>PATH</code>:
+            <pre><code>mkdir ~/bin
+PATH=~/bin:$PATH
+</code></pre></li>
+            <li>Baixe o script <code>repo</code> e defina as permissões:
+            <pre><code>curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+</code></pre></li>
+        </ol>
+
+        <h3>B. Inicialização e Sincronização do Repositório</h3>
+        <ol>
+            <li>Crie e acesse seu diretório de trabalho:
+            <pre><code>mkdir aptenos_oem_workspace
+cd aptenos_oem_workspace
+</code></pre></li>
+            <li>Inicialize o repositório, especificando a URL do manifesto Git (substitua os marcadores <code>[...]</code> pelos valores reais do seu projeto):
+            <pre><code>repo init -u <strong>[URL_DO_MANIFESTO_GIT_DO_APTENOS]</strong> -b <strong>[NOME_DA_BRANCH_ESTAVEL]</strong>
+</code></pre></li>
+            <li>Sincronize o código-fonte (este passo irá baixar todos os repositórios e pode demorar):
+            <pre><code>repo sync -j8
+</code></pre></li>
+        </ol>
+
+        <p><strong>Parabéns!</strong> Seu ambiente de desenvolvimento está configurado e o código-fonte do AptenOS está pronto para ser modificado. Você pode prosseguir para a próxima seção.</p>
+
+        <hr>
+
+        <h2>⏭️ Próximos Passos (Parte 2 do Tutorial)</h2>
+
+        <p>A Parte 2 irá detalhar como:</p>
+        <ul>
+            <li>Configurar as variáveis de ambiente.</li>
+            <li>Selecionar o alvo de build (target) para o seu hardware.</li>
+            <li>Executar o comando de compilação da imagem do sistema.</li>
+            <li>Obter os artefatos de saída (imagens do sistema).</li>
+        </ul>
+
+    </div>
+</body>
+</html>
