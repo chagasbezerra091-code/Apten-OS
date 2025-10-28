@@ -2,7 +2,7 @@
 ui::colors="white,black,blue"
 />
 <alert_ui
-apten_os::text::titile="{Titile}"
+apten_os::text::title="{Title}"
 apten_os::text="{Text}"
 apten_os::blue::button::action::exit="OK."
 />
