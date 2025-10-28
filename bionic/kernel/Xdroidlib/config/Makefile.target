@@ -1,0 +1,28 @@
+# Trecho de Makefile: bionic/kernel/Xdroidlib/config/Makefile.target
+
+# Variavel que aponta para o arquivo de configuracao base
+AP_CONFIG_FILE := target.config
+
+# Nome do arquivo de configuracao binario e compactado
+AP_CONFIG_TARGET := target.gz
+
+# Comando para compactacao (pode ser gzip, xz, etc.)
+COMPRESS_CMD := gzip -c
+
+# --- Regra de Build para Gerar o target.gz ---
+$(AP_CONFIG_TARGET): $(AP_CONFIG_FILE)
+	@echo "CONFIG: Gerando configuracao binaria e compactada para o alvo..."
+	$(COMPRESS_CMD) $< > $@
+	@echo "CONFIG: Arquivo $@ gerado com sucesso. Tamanho: $$(du -h $@ | awk '{print $$1}')"
+
+# --- Regra para Limpeza ---
+.PHONY: clean-config
+clean-config:
+	rm -f $(AP_CONFIG_TARGET)
+
+# --- Uso no Kernel Final ---
+# Em algum lugar no build principal (ex: kernel/Makefile):
+# O arquivo target.gz e embedado no binario do kernel (vmlinux) para ser carregado
+# no momento do boot.
+# LD_FLAGS += --section-start=.aptenconfig=0xXXXXXX
+# OBJCOPY_FLAGS += --add-section .aptenconfig=$(AP_CONFIG_TARGET),alloc,load,readonly,data,contents
