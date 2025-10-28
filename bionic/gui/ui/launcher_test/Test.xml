@@ -1,0 +1,3 @@
+<package package="com.apten.launcher.test"/>
+<Button>Name="Test"</Button>
+<action>action="Test"</action>
