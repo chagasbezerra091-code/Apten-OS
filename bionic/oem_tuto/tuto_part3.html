@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação OEM - Parte 3: Suporte, Manutenção e Conformidade</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 20px; }
+        header { border-bottom: 3px solid #007bff; padding-bottom: 10px; margin-bottom: 20px; }
+        h1 { color: #007bff; }
+        h2 { color: #28a745; border-left: 5px solid #28a745; padding-left: 10px; margin-top: 30px; }
+        h3 { color: #17a2b8; margin-top: 20px; }
+        p { margin-bottom: 15px; }
+        ul { list-style-type: disc; margin-left: 20px; }
+        li { margin-bottom: 8px; }
+        .section-note { background-color: #e9f7ef; border-left: 4px solid #28a745; padding: 15px; margin-top: 20px; }
+        .legal-box { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 15px; margin-top: 20px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>📚 Documentação OEM (Original Equipment Manufacturer)</h1>
+        <p><strong>Parte 3: Suporte, Manutenção e Conformidade</strong></p>
+    </header>
+
+    <h2>🛠️ 3.1 Suporte Técnico e Manutenção</h2>
+    <p>Esta seção detalha o processo de suporte, política de garantia e as diretrizes para a manutenção do produto final que integra o nosso componente.</p>
+
+    <h3>3.1.1 Política de Garantia</h3>
+    <ul>
+        <li><strong>Cobertura da Garantia OEM:</strong> Oferecemos <strong>[X anos]</strong> de garantia no <strong>[Seu Produto/Componente]</strong> contra defeitos de material e fabricação, a partir da data de envio para o OEM.</li>
+        <li><strong>Limitações e Exclusões:</strong> A garantia será anulada se o <strong>[Seu Produto/Componente]</strong> for modificado, danificado por uso indevido ou instalado em desacordo com as instruções de integração detalhadas na <em>Parte 2: Guia de Integração</em>.</li>
+        <li><strong>Responsabilidade de Suporte ao Usuário Final:</strong> O OEM é o <strong>ponto de contato principal (Nível 1)</strong> para o suporte ao usuário final. Problemas que o OEM diagnosticar como originados em nosso componente devem ser escalados para nossa equipe de suporte (Nível 2), utilizando o procedimento RMA.</li>
+    </ul>
+
+    <h3>3.1.2 Procedimento de RMA (Autorização de Retorno de Mercadoria)</h3>
+    <p>Para iniciar o processo de RMA e garantir o rápido tratamento do seu pedido, siga os passos abaixo:</p>
+    <ol>
+        <li><strong>Diagnóstico Preliminar:</strong> O OEM deve utilizar as ferramentas de diagnóstico fornecidas para confirmar a falha no <strong>[Seu Produto/Componente]</strong> e capturar logs de erro relevantes.</li>
+        <li><strong>Solicitação de RMA:</strong> Envie um e-mail para <code>rma-oem@suaempresa.com</code> com:
+            <ul>
+                <li>Número de Série (S/N) da unidade afetada.</li>
+                <li>Descrição detalhada da falha e resultados do diagnóstico.</li>
+                <li>Referência ao número do pedido de compra original.</li>
+            </ul>
+        </li>
+        <li><strong>Emissão do RMA:</strong> Nossa equipe de suporte responderá em até <strong>[Y dias úteis]</strong> com o número de RMA e as instruções de envio. <strong>Nenhum item será aceito sem um número de RMA válido.</strong></li>
+        <li><strong>Reenvio:</strong> O OEM é responsável pelos custos e riscos de envio da unidade defeituosa para o nosso centro de serviço.</li>
+    </ol>
+
+    <h3>3.1.3 Atualizações de Software e Firmware</h3>
+    <ul>
+        <li><strong>Acesso:</strong> Todas as novas versões de *firmware* e drivers serão disponibilizadas através do <strong>Portal de Parceiros OEM</strong>.</li>
+        <li><strong>Ciclo de Validação:</strong> Recomendamos fortemente que o OEM realize uma validação completa (regressão e funcional) de qualquer nova versão de *firmware* em seu produto final antes da implantação em campo.</li>
+        <li><strong>Política de Segurança:</strong> Atualizações críticas de segurança serão comunicadas por e-mail e disponibilizadas em um prazo máximo de <strong>[Z dias]</strong> após a identificação da vulnerabilidade.</li>
+    </ul>
+
+    <hr>
+
+    <h2>⚖️ 3.2 Conformidade Legal e Requisitos Comerciais</h2>
+    <p>Esta seção estabelece as obrigações legais, de licenciamento e os principais termos comerciais da parceria OEM.</p>
+
+    <h3>3.2.1 Licenciamento e Propriedade Intelectual</h3>
+    <ul>
+        <li><strong>Uso do Software:</strong> A licença de uso do software embarcado no <strong>[Seu Produto/Componente]</strong> é intransferível e restrita ao uso dentro do produto final do OEM.</li>
+        <li><strong>Atribuição de Marca (*Branding*):</strong> O OEM deve incluir uma menção de <em>"Contém [Seu Produto/Componente] da [Sua Empresa]"</em> no manual do usuário ou na seção "Sobre" do software do produto final.
+            <div class="legal-box">
+                <strong>NOTA LEGAL IMPORTANTE:</strong> O OEM não está autorizado a usar o logotipo da [Sua Empresa] no marketing ou na embalagem do produto final sem a prévia autorização por escrito.
+            </div>
+        </li>
+        <li><strong>Conformidade Regulatória (Certificações):</strong> O <strong>[Seu Produto/Componente]</strong> possui as certificações <strong>[Lista Certificações: Ex: CE, FCC, RoHS]</strong>. É de responsabilidade exclusiva do OEM obter e manter todas as certificações regulatórias necessárias para o **produto final** em cada mercado onde ele será vendido.</li>
+    </ul>
+
+    <h3>3.2.2 Requisitos de Rotulagem (Etiquetas)</h3>
+    <p>Para garantir a rastreabilidade e cumprir os requisitos regulatórios, o OEM deve:</p>
+    <ul>
+        <li>Manter a **Etiqueta de Número de Série (S/N)** original do <strong>[Seu Produto/Componente]</strong> acessível ou documentada internamente para fins de garantia.</li>
+        <li>Incluir os **Avisos de Conformidade** (como IDs FCC) de nosso componente no manual de usuário do produto final, conforme especificado no anexo A.</li>
+    </ul>
+
+    <h3>3.2.3 Termos Comerciais Chave</h3>
+    <ul>
+        <li><strong>Termos de Pagamento:</strong> Conforme estabelecido no Contrato Mestre de Fornecimento (MSA), geralmente <strong>[Ex: Net 30 dias]</strong> após a data de emissão da fatura.</li>
+        <li><strong>Fim da Vida Útil (*End-of-Life - EOL*):</strong> Em caso de descontinuação do <strong>[Seu Produto/Componente]</strong>, forneceremos um aviso de EOL com um mínimo de <strong>[6 meses]</strong>, seguido por uma oportunidade de Pedido Final de Compra (*Last Time Buy - LTB*) de <strong>[3 meses]</strong>.</li>
+        <li><strong>Qualidade e Inspeção:</strong> O OEM tem o direito de inspecionar as mercadorias em até <strong>[15 dias]</strong> após o recebimento. Falhas não reportadas neste período serão tratadas sob os termos de garantia.</li>
+    </ul>
+
+    <hr>
+    
+    <div class="section-note">
+        <strong>FIM DA PARTE 3.</strong> Para detalhes completos sobre as especificações técnicas, consulte a <em>Parte 1</em>. Para o guia de integração, consulte a <em>Parte 2</em>.
+    </div>
+
+</body>
+</html>
