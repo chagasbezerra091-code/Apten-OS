@@ -1,5 +1,5 @@
-#ifndef MODELS_HPP
-#define MODELS_HPP
+#ifndef MODELS_H
+#define MODELS_H
 struct testmodels {
 #define TestAptenOS /** o que testa o OS */
 #define TestAutomation /** API de Automação */
